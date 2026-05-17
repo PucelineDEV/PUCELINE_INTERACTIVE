@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +18,11 @@
             margin: 0;
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             -webkit-user-select: none;
             user-select: none;
         }
 
-        /* HEADER */
         header {
             background: rgba(19, 26, 38, 0.8);
             backdrop-filter: blur(10px);
@@ -46,11 +45,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .balance-container {
-            display: flex;
-            gap: 15px;
-        }
-
         .balance-box {
             background: rgba(0, 0, 0, 0.4);
             padding: 8px 16px;
@@ -64,7 +58,6 @@
             color: var(--accent-cyan);
         }
 
-        /* MAIN APP CONTAINER */
         .app-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -80,11 +73,10 @@
             text-transform: uppercase;
         }
 
-        /* CONTAINER GRID */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             margin-bottom: 60px;
         }
 
@@ -104,55 +96,31 @@
             transform: translateY(-5px);
         }
 
-        /* Kripto Uslubidagi Kubik Konteyner Tasviri */
         .container-box-art {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin: 20px auto;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(138, 43, 226, 0.2));
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1));
             border: 2px solid var(--accent-cyan);
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            position: relative;
         }
 
-        .container-box-art::after {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-        }
-
-        .premium-art {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(0, 0, 0, 0.5));
-        }
-
-        /* BUTTONS */
         .btn {
             background: linear-gradient(90deg, var(--accent-cyan), #00bcff);
             color: #000;
             border: none;
-            padding: 14px 28px;
-            font-size: 15px;
+            padding: 12px 24px;
+            font-size: 14px;
             font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
         }
 
         .btn:disabled {
@@ -161,14 +129,20 @@
             cursor: not-allowed;
         }
 
+        .price-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
         .timer-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #ff3366;
             margin-top: 10px;
             font-weight: bold;
         }
 
-        /* DONATE / PURCHASE SECTION */
         .donate-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -190,7 +164,6 @@
             font-weight: 800;
         }
 
-        /* MODAL (YUTUQ VA XABARLAR UCHUN) */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -210,12 +183,10 @@
             text-align: center;
             max-width: 400px;
             width: 85%;
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.3);
         }
 
-        .modal h2 { margin-top: 0; color: var(--accent-cyan); }
         .reward-anim {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             color: #fff;
             margin: 25px 0;
@@ -228,47 +199,64 @@
     <header>
         <div class="logo">CWK CORE</div>
         <div class="balance-container">
-            <div class="balance-box">Wallet: <span id="cwk-bal">0.0000</span> CWK</div>
+            <div class="balance-box">Баланс: <span id="cwk-bal">0.0000</span> CWK</div>
         </div>
     </header>
 
     <div class="app-container">
         
-        <div class="section-title">Konteynerlar ombori</div>
+        <div class="section-title">Хранилище Контейнеров</div>
         <div class="grid">
             
             <div class="card">
-                <div style="position: absolute; top: 12px; left: 12px; background: #2ecc71; color: #000; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 4px;">DAILY</div>
-                <h3>Daily Free Container</h3>
-                <p style="color: var(--text-muted); font-size: 13px;">Har 24 soatda bir marta mutlaqo bepul oching.</p>
+                <div style="position: absolute; top: 12px; left: 12px; background: #2ecc71; color: #000; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 4px;">БЕСПЛАТНО</div>
+                <h3>Daily Free Box</h3>
+                <p style="color: var(--text-muted); font-size: 12px;">Доступен 1 раз в 24 часа.</p>
                 <div class="container-box-art">📦</div>
-                <button class="btn" id="free-btn" onclick="openFreeContainer()">Ochish</button>
+                <div class="price-text">0.0000 CWK</div>
+                <button class="btn" id="free-btn" onclick="openFreeContainer()">Открыть</button>
                 <div id="timer-display" class="timer-text" style="display: none;"></div>
             </div>
 
-            <div class="card" style="border-color: rgba(138, 43, 226, 0.3);">
-                <div style="position: absolute; top: 12px; left: 12px; background: var(--accent-purple); color: #fff; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 4px;">PREMIUM</div>
-                <h3>CWK Matrix Box</h3>
-                <p style="color: var(--text-muted); font-size: 13px;">Minimal yutuq: 0.005 CWK | Maksimal: 2.0 CWK</p>
-                <div class="container-box-art premium-art">🔮</div>
-                <button class="btn" style="background: linear-gradient(90deg, var(--accent-purple), #a146ff); color: white;" onclick="openPremiumContainer()">Ochish (Premium)</button>
+            <div class="card">
+                <h3>Light Container</h3>
+                <p style="color: var(--text-muted); font-size: 12px;">Бюджетный контейнер.</p>
+                <div class="container-box-art" style="border-color: #3498db;">✉️</div>
+                <div class="price-text">0.005 CWK</div>
+                <button class="btn" onclick="openPaidContainer(0.005)">Открыть</button>
+            </div>
+
+            <div class="card">
+                <h3>Standard Container</h3>
+                <p style="color: var(--text-muted); font-size: 12px;">Сбалансированные дропы.</p>
+                <div class="container-box-art" style="border-color: #f1c40f;">🗃️</div>
+                <div class="price-text">0.100 CWK</div>
+                <button class="btn" onclick="openPaidContainer(0.100)">Открыть</button>
+            </div>
+
+            <div class="card">
+                <h3>Premium Container</h3>
+                <p style="color: var(--text-muted); font-size: 12px;">Высокие лимиты наград.</p>
+                <div class="container-box-art" style="border-color: var(--accent-purple);">🔮</div>
+                <div class="price-text">0.200 CWK</div>
+                <button class="btn" onclick="openPaidContainer(0.200)">Открыть</button>
             </div>
 
         </div>
 
-        <div class="section-title">CWK Sotib olish (USD)</div>
+        <div class="section-title">Купить CWK (USD)</div>
         <div class="donate-grid">
             <div class="donate-card">
                 <h4 style="margin:0; color: var(--text-muted);">Tier 1 Pack</h4>
                 <div class="price-tag">0.49 USD</div>
                 <p style="font-size: 14px; font-weight: bold;">+0.008 CWK</p>
-                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Sotib olish</button>
+                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Купить</button>
             </div>
             <div class="donate-card">
                 <h4 style="margin:0; color: var(--text-muted);">Tier 2 Pack</h4>
                 <div class="price-tag">0.99 USD</div>
                 <p style="font-size: 14px; font-weight: bold;">+0.018 CWK</p>
-                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Sotib olish</button>
+                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Купить</button>
             </div>
         </div>
 
@@ -276,16 +264,16 @@
 
     <div class="overlay" id="modal-overlay">
         <div class="modal">
-            <h2 id="modal-title">Konteyner ochildi!</h2>
+            <h2 id="modal-title">Контейнер открыт!</h2>
             <div class="reward-anim" id="reward-text">0.0000 CWK</div>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Yutuq hisobingizga muvaffaqiyatli qo'shildi.</p>
-            <button class="btn" onclick="closeModal()">Yopish</button>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Награда зачислена на ваш баланс.</p>
+            <button class="btn" onclick="closeModal()">Закрыть</button>
         </div>
     </div>
 
     <script>
-        // O'yinchi Balansi
-        let walletBalance = parseFloat(localStorage.getItem('cwk_wallet')) || 0.0000;
+        // Boshlang'ich balansni 0.5000 CWK qilamiz, foydalanuvchi pulliklarini sinab ko'ra olishi uchun
+        let walletBalance = parseFloat(localStorage.getItem('cwk_wallet')) || 0.5000;
         
         function updateBalanceDisplay() {
             document.getElementById('cwk-bal').innerText = walletBalance.toFixed(4);
@@ -293,61 +281,62 @@
         }
         updateBalanceDisplay();
 
-        // --- TEKIN KONTEYNER LOGIKASI (35%, 30%, 15%, 4% va qolgan foiz omadsiz) ---
+        // TEKIN KONTEYNER ALGORITMI (Siz aytgan foizlar bilan)
         function openFreeContainer() {
             const lastOpen = localStorage.getItem('cwk_last_free_open');
             const now = Date.now();
 
             if (lastOpen && now - parseInt(lastOpen) < 24 * 60 * 60 * 1000) {
-                alert("Kunlik tekin konteynerni ochib bo'lgansiz!");
+                alert("Этот контейнер уже открыт! Попробуйте позже.");
                 return;
             }
 
-            // Tasodifiy foiz (0 dan 100 gacha)
             const rng = Math.random() * 100;
             let winAmount = 0;
 
             if (rng <= 35) {
-                winAmount = 0.002; // 35% imkoniyat
+                winAmount = 0.002; // 35%
             } else if (rng <= 65) {
-                winAmount = 0.005; // 30% imkoniyat (35 + 30)
+                winAmount = 0.005; // 30%
             } else if (rng <= 80) {
-                winAmount = 0.01;  // 15% imkoniyat (65 + 15)
+                winAmount = 0.01;  // 15%
             } else if (rng <= 84) {
-                winAmount = 0.02;  // 4% imkoniyat (80 + 4)
+                winAmount = 0.02;  // 4%
             } else {
-                winAmount = 0.0001; // Qolgan 16% holatda minimal dalda yutug'i
+                winAmount = 0.001; // Qolgan 16% uchun minimal yutuq
             }
 
             walletBalance += winAmount;
             localStorage.setItem('cwk_last_free_open', now);
             
-            // Natijani ko'rsatish
-            document.getElementById('modal-title').innerText = "Daily Box Natijasi";
-            document.getElementById('reward-text').innerText = "+" + winAmount + " CWK";
-            document.getElementById('modal-overlay').style.display = 'flex';
-            
-            updateBalanceDisplay();
+            showReward("Daily Box", winAmount);
             checkTimer();
         }
 
-        // --- PREMIUM KONTEYNER LOGIKASI (Eng kam 0.005, eng ko'p 2 CWK) ---
-        function openPremiumContainer() {
-            // Haqiqiy tasodifiy kriptografik algoritm
-            const min = 0.005;
-            const max = 2.0;
-            const winAmount = Math.random() * (max - min) + min;
+        // PULLIK KONTEYNERLAR MATRIXI (Min 0.005 dan Max 2.0 CWK gacha)
+        function openPaidContainer(price) {
+            if (walletBalance >= price) {
+                walletBalance -= price;
+                
+                const min = 0.005;
+                const max = 2.0;
+                const winAmount = Math.random() * (max - min) + min;
 
-            walletBalance += winAmount;
+                walletBalance += winAmount;
+                showReward("Paid Box", winAmount);
+            } else {
+                alert("Недостаточно CWK на балансе!");
+            }
+        }
 
-            document.getElementById('modal-title').innerText = "Matrix Box Natijasi";
-            document.getElementById('reward-text').innerText = "+" + winAmount.toFixed(4) + " CWK";
+        function showReward(title, amount) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('reward-text').innerText = "+" + amount.toFixed(4) + " CWK";
             document.getElementById('modal-overlay').style.display = 'flex';
-
             updateBalanceDisplay();
         }
 
-        // --- TAYMER TIZIMI (1 kunda 1 marta ochish cheklovi) ---
+        // 24 SOATLIK TAYMER SIKLI
         function checkTimer() {
             const lastOpen = localStorage.getItem('cwk_last_free_open');
             const btn = document.getElementById('free-btn');
@@ -372,20 +361,18 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                timerDiv.innerText = `Keyingi ochish: ${hours}soat ${minutes}daqiqa ${seconds}soniya`;
+                timerDiv.innerText = `Следующий через: ${hours}ч ${minutes}м ${seconds}с`;
             } else {
                 btn.disabled = false;
                 timerDiv.style.display = 'none';
             }
         }
 
-        // Har soniyada taymerni yangilab turish
         setInterval(checkTimer, 1000);
         checkTimer();
 
-        // TO'LOV CHEKLOVI XABARI
         function showPaymentAlert() {
-            alert("Tizim bildirishi: Hali to'lovlar qilib bo'lmaydi! Tizim test rejimida.");
+            alert("Платежная система недоступна: В данный момент платежи не принимаются!");
         }
 
         function closeModal() {
