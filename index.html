@@ -1,383 +1,86 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CWK Ecosystem Hub</title>
-    <style>
-        :root {
-            --bg-dark: #0a0e17;
-            --panel-bg: #131a26;
-            --accent-cyan: #00f0ff;
-            --accent-purple: #8a2be2;
-            --text-main: #ffffff;
-            --text-muted: #707e94;
-        }
+<nav>
+    <a href="#home">Главная</a>
+    <a href="#games">Игры</a>
+    <a href="#news">Новости</a>
+    <a href="#about">О нас</a>
+</nav>
 
-        body {
-            margin: 0;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+<p>
+    Добро пожаловать на официальный сайт
+    PUCELINE INTERACTIVE!
+    Следите за нашими играми, новостями
+    и будущими обновлениями.
+</p>
 
-        header {
-            background: rgba(19, 26, 38, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+<a href="#games" class="button">
+    НАШИ ПРОЕКТЫ →
+</a>
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+<div class="cards">
 
-        .balance-box {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .balance-box span {
-            color: var(--accent-cyan);
-        }
-
-        .app-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 24px;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--accent-cyan);
-            padding-left: 15px;
-            text-transform: uppercase;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .card {
-            background: var(--panel-bg);
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .container-box-art {
-            width: 100px;
-            height: 100px;
-            margin: 20px auto;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1));
-            border: 2px solid var(--accent-cyan);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .btn {
-            background: linear-gradient(90deg, var(--accent-cyan), #00bcff);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:disabled {
-            background: #252f3f;
-            color: var(--text-muted);
-            cursor: not-allowed;
-        }
-
-        .price-text {
-            font-size: 16px;
-            font-weight: bold;
-            color: #2ecc71;
-            margin-bottom: 15px;
-        }
-
-        .timer-text {
-            font-size: 12px;
-            color: #ff3366;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .donate-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .donate-card {
-            background: #172232;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .price-tag {
-            font-size: 24px;
-            color: #2ecc71;
-            margin: 15px 0;
-            font-weight: 800;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 200;
-        }
-
-        .modal {
-            background: var(--panel-bg);
-            border: 2px solid var(--accent-cyan);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 400px;
-            width: 85%;
-        }
-
-        .reward-anim {
-            font-size: 32px;
-            font-weight: 800;
-            color: #fff;
-            margin: 25px 0;
-            text-shadow: 0 0 10px var(--accent-cyan);
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">CWK CORE</div>
-        <div class="balance-container">
-            <div class="balance-box">Баланс: <span id="cwk-bal">0.0000</span> CWK</div>
-        </div>
-    </header>
-
-    <div class="app-container">
-        
-        <div class="section-title">Хранилище Контейнеров</div>
-        <div class="grid">
-            
-            <div class="card">
-                <div style="position: absolute; top: 12px; left: 12px; background: #2ecc71; color: #000; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 4px;">БЕСПЛАТНО</div>
-                <h3>Daily Free Box</h3>
-                <p style="color: var(--text-muted); font-size: 12px;">Доступен 1 раз в 24 часа.</p>
-                <div class="container-box-art">📦</div>
-                <div class="price-text">0.0000 CWK</div>
-                <button class="btn" id="free-btn" onclick="openFreeContainer()">Открыть</button>
-                <div id="timer-display" class="timer-text" style="display: none;"></div>
-            </div>
-
-            <div class="card">
-                <h3>Light Container</h3>
-                <p style="color: var(--text-muted); font-size: 12px;">Бюджетный контейнер.</p>
-                <div class="container-box-art" style="border-color: #3498db;">✉️</div>
-                <div class="price-text">0.005 CWK</div>
-                <button class="btn" onclick="openPaidContainer(0.005)">Открыть</button>
-            </div>
-
-            <div class="card">
-                <h3>Standard Container</h3>
-                <p style="color: var(--text-muted); font-size: 12px;">Сбалансированные дропы.</p>
-                <div class="container-box-art" style="border-color: #f1c40f;">🗃️</div>
-                <div class="price-text">0.100 CWK</div>
-                <button class="btn" onclick="openPaidContainer(0.100)">Открыть</button>
-            </div>
-
-            <div class="card">
-                <h3>Premium Container</h3>
-                <p style="color: var(--text-muted); font-size: 12px;">Высокие лимиты наград.</p>
-                <div class="container-box-art" style="border-color: var(--accent-purple);">🔮</div>
-                <div class="price-text">0.200 CWK</div>
-                <button class="btn" onclick="openPaidContainer(0.200)">Открыть</button>
-            </div>
-
-        </div>
-
-        <div class="section-title">Купить CWK (USD)</div>
-        <div class="donate-grid">
-            <div class="donate-card">
-                <h4 style="margin:0; color: var(--text-muted);">Tier 1 Pack</h4>
-                <div class="price-tag">0.49 USD</div>
-                <p style="font-size: 14px; font-weight: bold;">+0.008 CWK</p>
-                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Купить</button>
-            </div>
-            <div class="donate-card">
-                <h4 style="margin:0; color: var(--text-muted);">Tier 2 Pack</h4>
-                <div class="price-tag">0.99 USD</div>
-                <p style="font-size: 14px; font-weight: bold;">+0.018 CWK</p>
-                <button class="btn" style="background: #252f3f; color: #9aa0a6;" onclick="showPaymentAlert()">Купить</button>
-            </div>
-        </div>
-
+    <div class="card">
+        <h3>✈️ БЕСПИЛОТНИК (МОЛНИЯ)</h3>
+        <p>
+            Новый игровой проект PUCELINE
+            INTERACTIVE.
+        </p>
     </div>
 
-    <div class="overlay" id="modal-overlay">
-        <div class="modal">
-            <h2 id="modal-title">Контейнер открыт!</h2>
-            <div class="reward-anim" id="reward-text">0.0000 CWK</div>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 25px;">Награда зачислена на ваш баланс.</p>
-            <button class="btn" onclick="closeModal()">Закрыть</button>
-        </div>
+    <div class="card">
+        <h3>🏙️ НОВЫЙ ГОРОД</h3>
+        <p>
+            Новая городская локация,
+            добавленная в обновлении.
+        </p>
     </div>
 
-    <script>
-        // Boshlang'ich balansni 0.5000 CWK qilamiz, foydalanuvchi pulliklarini sinab ko'ra olishi uchun
-        let walletBalance = parseFloat(localStorage.getItem('cwk_wallet')) || 0.5000;
-        
-        function updateBalanceDisplay() {
-            document.getElementById('cwk-bal').innerText = walletBalance.toFixed(4);
-            localStorage.setItem('cwk_wallet', walletBalance);
-        }
-        updateBalanceDisplay();
+    <div class="card">
+        <h3>⚡️ БУДУЩИЕ ОБНОВЛЕНИЯ</h3>
+        <p>
+            Новые возможности и улучшения
+            игрового мира.
+        </p>
+    </div>
 
-        // TEKIN KONTEYNER ALGORITMI (Siz aytgan foizlar bilan)
-        function openFreeContainer() {
-            const lastOpen = localStorage.getItem('cwk_last_free_open');
-            const now = Date.now();
+</div>
 
-            if (lastOpen && now - parseInt(lastOpen) < 24 * 60 * 60 * 1000) {
-                alert("Этот контейнер уже открыт! Попробуйте позже.");
-                return;
-            }
+<div class="news-item">
+    <span class="status">ОБНОВЛЕНИЕ</span>
+    <h3>НОВЫЙ ДРОН — МОЛНИЯ ✈️</h3>
+    <p>Обновление от 26.11.2026</p>
+</div>
 
-            const rng = Math.random() * 100;
-            let winAmount = 0;
+<div class="news-item">
+    <h3>🎯 НОВАЯ ФИЗИКА</h3>
+    <p>Добавлена новая физика.</p>
+</div>
 
-            if (rng <= 35) {
-                winAmount = 0.002; // 35%
-            } else if (rng <= 65) {
-                winAmount = 0.005; // 30%
-            } else if (rng <= 80) {
-                winAmount = 0.01;  // 15%
-            } else if (rng <= 84) {
-                winAmount = 0.02;  // 4%
-            } else {
-                winAmount = 0.001; // Qolgan 16% uchun minimal yutuq
-            }
+<div class="news-item">
+    <h3>🧩 УЛУЧШЕННАЯ ГРАФИКА</h3>
+    <p>Графические улучшения проекта.</p>
+</div>
 
-            walletBalance += winAmount;
-            localStorage.setItem('cwk_last_free_open', now);
-            
-            showReward("Daily Box", winAmount);
-            checkTimer();
-        }
+<div class="news-item">
+    <h3>🟢 НОВОЕ ОРУЖИЕ И ОГОНЬ</h3>
+    <p>Добавлены новые игровые элементы.</p>
+</div>
 
-        // PULLIK KONTEYNERLAR MATRIXI (Min 0.005 dan Max 2.0 CWK gacha)
-        function openPaidContainer(price) {
-            if (walletBalance >= price) {
-                walletBalance -= price;
-                
-                const min = 0.005;
-                const max = 2.0;
-                const winAmount = Math.random() * (max - min) + min;
+<div class="news-item">
+    <h3>🚀 СКОРО: ПВО</h3>
+    <p>Будущая функция проекта.</p>
+</div>
 
-                walletBalance += winAmount;
-                showReward("Paid Box", winAmount);
-            } else {
-                alert("Недостаточно CWK на балансе!");
-            }
-        }
+<div class="news-item">
+    <h3>🚨 СКОРО: ЗВУК СИРЕНЫ</h3>
+    <p>Будущее звуковое обновление.</p>
+</div>
 
-        function showReward(title, amount) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('reward-text').innerText = "+" + amount.toFixed(4) + " CWK";
-            document.getElementById('modal-overlay').style.display = 'flex';
-            updateBalanceDisplay();
-        }
-
-        // 24 SOATLIK TAYMER SIKLI
-        function checkTimer() {
-            const lastOpen = localStorage.getItem('cwk_last_free_open');
-            const btn = document.getElementById('free-btn');
-            const timerDiv = document.getElementById('timer-display');
-
-            if (!lastOpen) {
-                btn.disabled = false;
-                timerDiv.style.display = 'none';
-                return;
-            }
-
-            const now = Date.now();
-            const timePassed = now - parseInt(lastOpen);
-            const dayInMs = 24 * 60 * 60 * 1000;
-
-            if (timePassed < dayInMs) {
-                btn.disabled = true;
-                timerDiv.style.display = 'block';
-                
-                const timeLeft = dayInMs - timePassed;
-                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                
-                timerDiv.innerText = `Следующий через: ${hours}ч ${minutes}м ${seconds}с`;
-            } else {
-                btn.disabled = false;
-                timerDiv.style.display = 'none';
-            }
-        }
-
-        setInterval(checkTimer, 1000);
-        checkTimer();
-
-        function showPaymentAlert() {
-            alert("Платежная система недоступна: В данный момент платежи не принимаются!");
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+<div class="card">
+    <h3>PUCELINE INTERACTIVE</h3>
+    <p>
+        Мы развиваем игровые проекты,
+        создаём новые идеи и работаем
+        над улучшением игрового опыта.
+        Следите за нашими обновлениями!
+    </p>
+</div>
