@@ -1,86 +1,441 @@
-<nav>
-    <a href="#home">Главная</a>
-    <a href="#games">Игры</a>
-    <a href="#news">Новости</a>
-    <a href="#about">О нас</a>
-</nav>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puceline Interactive - Новый Дрон (Молния)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Asosiy sozlamalar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-<p>
-    Добро пожаловать на официальный сайт
-    PUCELINE INTERACTIVE!
-    Следите за нашими играми, новостями
-    и будущими обновлениями.
-</p>
+        body {
+            background-color: #0d0d12;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-<a href="#games" class="button">
-    НАШИ ПРОЕКТЫ →
-</a>
+        /* Orqa fon effekti */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 0, 128, 0.15), transparent 60%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1), transparent 50%);
+            z-index: -1;
+        }
 
-<div class="cards">
+        /* Navigatsiya paneli */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(13, 13, 18, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    <div class="card">
-        <h3>✈️ БЕСПИЛОТНИК (МОЛНИЯ)</h3>
-        <p>
-            Новый игровой проект PUCELINE
-            INTERACTIVE.
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ff007f;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ffffff;
+            font-weight: 400;
+        }
+
+        nav a {
+            color: #b0b0b0;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff007f;
+        }
+
+        /* Asosiy qism (Hero) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 0, 127, 0.2);
+            border: 1px solid #ff007f;
+            color: #ff007f;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 127, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ffffff, #b0b0b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 .highlight {
+            background: linear-gradient(90deg, #ff007f, #ff00cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .date-info {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .date-info span {
+            color: #00ffff;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff007f, #ff00cc);
+            color: #fff;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 0, 127, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 127, 0.6);
+        }
+
+        .engine-tag {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #888;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .engine-tag img {
+            width: 30px;
+        }
+
+        /* Yangilanishlar (Features) */
+        .features {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .section-title span {
+            color: #ff007f;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #ff007f;
+            background: rgba(255, 0, 127, 0.05);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #b0b0b0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Tez Kunda (Coming Soon) */
+        .coming-soon {
+            padding: 60px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .coming-soon h2 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .coming-soon h2 span {
+            color: #00ffff;
+        }
+
+        .soon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .soon-item {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .soon-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .soon-icon {
+            color: #00ffff;
+            font-size: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Mobil moslashuvchanlik */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 42px;
+            }
+            .subtitle {
+                font-size: 16px;
+            }
+            .features, .coming-soon {
+                padding: 40px 20px;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Navigatsiya -->
+    <header>
+        <div class="logo">Puceline <span>Interactive</span></div>
+        <nav>
+            <a href="#features">Обновления</a>
+            <a href="#coming">Скоро</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- Asosiy qism -->
+    <section class="hero">
+        <div class="badge">Новинка</div>
+        <h1>Новый Дрон <br><span class="highlight">Молния</span></h1>
+        <p class="subtitle">
+            Добро пожаловать в мир новых возможностей. Мы полностью переработали физику, добавили новый город и смертоносное оружие. Игра создана на базе <strong>Unreal Engine 5</strong>.
         </p>
-    </div>
+        <div class="date-info">ОБНОВЛЕНО СЕГОДНЯ: <span>26.11.2026</span></div>
+        <a href="#features" class="btn">Смотреть обновления</a>
+        
+        <div class="engine-tag">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            РАЗРАБОТАНО НА UNREAL ENGINE 5
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>🏙️ НОВЫЙ ГОРОД</h3>
-        <p>
-            Новая городская локация,
-            добавленная в обновлении.
-        </p>
-    </div>
+    <!-- Yangilanishlar -->
+    <section class="features" id="features">
+        <h2 class="section-title">Что <span>нового?</span></h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🏙️</div>
+                <h3>Новый Город</h3>
+                <p>Исследуйте огромные локации с детализированной графикой и новыми локациями для сражений.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Новая Физика</h3>
+                <p>Почувствуйте реалистичную баллистику и улучшенное взаимодействие с окружением.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧩</div>
+                <h3>Улучшенная Графика</h3>
+                <p>Технологии Unreal Engine 5 позволяют добиться фотореалистичного освещения и теней.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔫</div>
+                <h3>Новое Оружие и Звук</h3>
+                <p>Арсенал пополнился новыми видами оружия. Полностью переработан звук выстрелов.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Огонь</h3>
+                <p>Реалистичная система распространения огня и новые эффекты частиц.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✈️</div>
+                <h3>Дрон "Молния"</h3>
+                <p>Управляйте новым разведывательным и боевым дроном с уникальными способностями.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-        <h3>⚡️ БУДУЩИЕ ОБНОВЛЕНИЯ</h3>
-        <p>
-            Новые возможности и улучшения
-            игрового мира.
-        </p>
-    </div>
+    <!-- Tez Kunda -->
+    <section class="coming-soon" id="coming">
+        <h2>Скоро в <span>игре</span></h2>
+        <div class="soon-list">
+            <div class="soon-item">
+                <span class="soon-icon">🎯</span>
+                <span>+ ПВО 🚀 (Системы противовоздушной обороны)</span>
+            </div>
+            <div class="soon-item">
+                <span class="soon-icon">🎯</span>
+                <span>+ Звук Сирены 🚨 (Тревога и оповещение)</span>
+            </div>
+            <div class="soon-item">
+                <span class="soon-icon">🎯</span>
+                <span>+ Звук Дрона! 🛸 (Реалистичный гул двигателей)</span>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Puceline Interactive. Все права защищены.</p>
+        <p style="margin-top: 10px; font-size: 12px;">Сайт создан для демонстрации обновлений игры.</p>
+    </footer>
 
-<div class="news-item">
-    <span class="status">ОБНОВЛЕНИЕ</span>
-    <h3>НОВЫЙ ДРОН — МОЛНИЯ ✈️</h3>
-    <p>Обновление от 26.11.2026</p>
-</div>
+    <!-- JavaScript Animatsiyalar -->
+    <script>
+        // Scroll bo'lganda elementlarning paydo bo'lish animatsiyasi
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-<div class="news-item">
-    <h3>🎯 НОВАЯ ФИЗИКА</h3>
-    <p>Добавлена новая физика.</p>
-</div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-<div class="news-item">
-    <h3>🧩 УЛУЧШЕННАЯ ГРАФИКА</h3>
-    <p>Графические улучшения проекта.</p>
-</div>
-
-<div class="news-item">
-    <h3>🟢 НОВОЕ ОРУЖИЕ И ОГОНЬ</h3>
-    <p>Добавлены новые игровые элементы.</p>
-</div>
-
-<div class="news-item">
-    <h3>🚀 СКОРО: ПВО</h3>
-    <p>Будущая функция проекта.</p>
-</div>
-
-<div class="news-item">
-    <h3>🚨 СКОРО: ЗВУК СИРЕНЫ</h3>
-    <p>Будущее звуковое обновление.</p>
-</div>
-
-<div class="card">
-    <h3>PUCELINE INTERACTIVE</h3>
-    <p>
-        Мы развиваем игровые проекты,
-        создаём новые идеи и работаем
-        над улучшением игрового опыта.
-        Следите за нашими обновлениями!
-    </p>
-</div>
+        // Kartochkalar va boshqa elementlarni kuzatish
+        document.querySelectorAll('.card, .soon-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
