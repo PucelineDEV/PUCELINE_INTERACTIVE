@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puceline Interactive - Новый Дрон (Молния)</title>
+    <title>Puceline-Interactive | FPV Drone Update</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Asosiy sozlamalar */
+        :root {
+            --primary: #ff007f;
+            --secondary: #00ffff;
+            --bg-dark: #0a0612;
+            --bg-panel: #120a1c;
+            --text-main: #ffffff;
+            --text-muted: #a090b0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,84 +23,126 @@
         }
 
         body {
-            background-color: #0d0d12;
-            color: #ffffff;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Orqa fon effekti */
+        /* Fon effekti */
         .bg-glow {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(255, 0, 128, 0.15), transparent 60%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.1), transparent 50%);
+            background: radial-gradient(circle at 15% 20%, rgba(255, 0, 127, 0.12), transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 255, 255, 0.08), transparent 40%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        /* Navigatsiya paneli */
+        /* Header / Navbar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: rgba(13, 13, 18, 0.8);
-            backdrop-filter: blur(10px);
+            padding: 20px 5%;
+            background: rgba(10, 6, 18, 0.85);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 0, 127, 0.15);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 900;
-            color: #ff007f;
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
         }
 
         .logo span {
-            color: #ffffff;
+            color: var(--text-main);
             font-weight: 400;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         nav a {
-            color: #b0b0b0;
+            color: var(--text-muted);
             text-decoration: none;
-            margin-left: 30px;
             font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #ff007f;
+            color: var(--primary);
         }
 
-        /* Asosiy qism (Hero) */
+        /* Til almashtirish tugmasi */
+        .lang-switch {
+            display: flex;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Hero Section */
         .hero {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 80vh;
-            padding: 20px;
+            min-height: 85vh;
+            padding: 40px 5%;
+            position: relative;
         }
 
         .badge {
-            background: rgba(255, 0, 127, 0.2);
-            border: 1px solid #ff007f;
-            color: #ff007f;
-            padding: 8px 20px;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 24px;
             border-radius: 50px;
-            font-weight: 700;
+            font-weight: 900;
             font-size: 14px;
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
             animation: pulse 2s infinite;
         }
 
@@ -103,39 +153,40 @@
         }
 
         h1 {
-            font-size: 72px;
+            font-size: 80px;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #ffffff, #b0b0b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         h1 .highlight {
-            background: linear-gradient(90deg, #ff007f, #ff00cc);
+            background: linear-gradient(90deg, #ff007f, #ff00cc, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
             font-size: 20px;
-            color: #b0b0b0;
-            max-width: 700px;
+            color: var(--text-muted);
+            max-width: 800px;
             margin-bottom: 30px;
-            line-height: 1.6;
         }
 
         .date-info {
             font-size: 16px;
-            color: #666;
+            color: #888;
             margin-bottom: 40px;
             font-weight: 700;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
         }
 
         .date-info span {
-            color: #00ffff;
+            color: var(--secondary);
         }
 
         .btn {
@@ -143,7 +194,7 @@
             color: #fff;
             padding: 18px 50px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: 900;
             text-transform: uppercase;
@@ -156,41 +207,26 @@
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 0, 127, 0.6);
+            box-shadow: 0 15px 40px rgba(255, 0, 127, 0.7);
         }
 
-        .engine-tag {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #888;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .engine-tag img {
-            width: 30px;
-        }
-
-        /* Yangilanishlar (Features) */
+        /* Features Section */
         .features {
-            padding: 80px 50px;
+            padding: 80px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
             margin-bottom: 50px;
             text-transform: uppercase;
         }
 
         .section-title span {
-            color: #ff007f;
+            color: var(--primary);
         }
 
         .grid {
@@ -200,85 +236,163 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            border-color: #ff007f;
-            background: rgba(255, 0, 127, 0.05);
+            border-color: rgba(255, 0, 127, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-icon {
-            font-size: 40px;
+            font-size: 48px;
             margin-bottom: 20px;
         }
 
         .card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #fff;
         }
 
         .card p {
-            color: #b0b0b0;
+            color: var(--text-muted);
             font-size: 15px;
-            line-height: 1.5;
         }
 
-        /* Tez Kunda (Coming Soon) */
+        /* Yangi FPV Drone kartochkasi uchun maxsus stil */
+        .card.special {
+            border: 1px solid var(--primary);
+            background: linear-gradient(145deg, rgba(255, 0, 127, 0.05), var(--bg-panel));
+        }
+
+        .card.special .card-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Coming Soon */
         .coming-soon {
-            padding: 60px 50px;
+            padding: 80px 5%;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
         .coming-soon h2 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
             margin-bottom: 40px;
             text-transform: uppercase;
         }
 
         .coming-soon h2 span {
-            color: #00ffff;
+            color: var(--secondary);
         }
 
         .soon-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            align-items: flex-start;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .soon-item {
             background: rgba(0, 255, 255, 0.05);
             border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px 30px;
-            width: 100%;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             font-size: 18px;
             font-weight: 700;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            text-align: left;
         }
 
         .soon-item:hover {
             background: rgba(0, 255, 255, 0.1);
+            border-color: var(--secondary);
+            transform: translateX(10px);
         }
 
         .soon-icon {
-            color: #00ffff;
-            font-size: 20px;
+            color: var(--secondary);
+            font-size: 24px;
+        }
+
+        /* Social Links */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn.telegram:hover {
+            background: rgba(0, 136, 204, 0.2);
+            border-color: #0088cc;
+            box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .social-btn.tiktok:hover {
+            background: rgba(255, 0, 80, 0.2);
+            border-color: #ff0050;
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
         /* Footer */
@@ -293,26 +407,26 @@
         /* Mobil moslashuvchanlik */
         @media (max-width: 768px) {
             header {
-                padding: 15px 20px;
                 flex-direction: column;
                 gap: 15px;
+                padding: 15px;
             }
-            nav a {
-                margin: 0 10px;
-                font-size: 14px;
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             h1 {
-                font-size: 42px;
+                font-size: 48px;
             }
             .subtitle {
                 font-size: 16px;
             }
-            .features, .coming-soon {
-                padding: 40px 20px;
+            .socials {
+                flex-direction: column;
+                align-items: center;
             }
-            .btn {
-                padding: 15px 30px;
-                font-size: 16px;
+            .section-title, .coming-soon h2 {
+                font-size: 32px;
             }
         }
     </style>
@@ -321,105 +435,176 @@
 
     <div class="bg-glow"></div>
 
-    <!-- Navigatsiya -->
+    <!-- Header -->
     <header>
-        <div class="logo">Puceline <span>Interactive</span></div>
+        <div class="logo">Puceline<span>-Interactive</span></div>
         <nav>
-            <a href="#features">Обновления</a>
-            <a href="#coming">Скоро</a>
-            <a href="#contact">Контакты</a>
+            <a href="#features" data-ru="Обновления" data-en="Updates">Обновления</a>
+            <a href="#coming" data-ru="Скоро" data-en="Coming Soon">Скоро</a>
+            <a href="#socials" data-ru="Контакты" data-en="Contacts">Контакты</a>
+            
+            <!-- Til almashtirish -->
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" onclick="setLang('en')">ENG</button>
+            </div>
         </nav>
     </header>
 
-    <!-- Asosiy qism -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="badge">Новинка</div>
-        <h1>Новый Дрон <br><span class="highlight">Молния</span></h1>
-        <p class="subtitle">
-            Добро пожаловать в мир новых возможностей. Мы полностью переработали физику, добавили новый город и смертоносное оружие. Игра создана на базе <strong>Unreal Engine 5</strong>.
+        <div class="badge" data-ru="Новое обновление" data-en="New Update">Новое обновление</div>
+        <h1 data-ru="FPV ДРОН <br><span class='highlight'>ДОБАВЛЕН</span>" data-en="FPV DRONE <br><span class='highlight'>ADDED</span>">
+            FPV ДРОН <br><span class="highlight">ДОБАВЛЕН</span>
+        </h1>
+        <p class="subtitle" data-ru="Погрузитесь в мир скоростных полетов. Мы добавили полноценное управление FPV-дроном, новую физику полета и детализированные локации." data-en="Immerse yourself in high-speed flights. We have added full FPV drone control, new flight physics, and detailed locations.">
+            Погрузитесь в мир скоростных полетов. Мы добавили полноценное управление FPV-дроном, новую физику полета и детализированные локации.
         </p>
-        <div class="date-info">ОБНОВЛЕНО СЕГОДНЯ: <span>26.11.2026</span></div>
-        <a href="#features" class="btn">Смотреть обновления</a>
-        
-        <div class="engine-tag">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M2 17L12 22L22 17" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="#888" stroke-width="2" stroke-linejoin="round"/>
-            </svg>
-            РАЗРАБОТАНО НА UNREAL ENGINE 5
+        <div class="date-info" data-ru="ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: <span>27.11.2026</span>" data-en="LAST UPDATE: <span>27.11.2026</span>">
+            ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: <span>27.11.2026</span>
         </div>
+        <a href="#features" class="btn" data-ru="Смотреть обновления" data-en="View Updates">Смотреть обновления</a>
     </section>
 
-    <!-- Yangilanishlar -->
+    <!-- Features -->
     <section class="features" id="features">
-        <h2 class="section-title">Что <span>нового?</span></h2>
+        <h2 class="section-title" data-ru="Что <span>нового?</span>" data-en="What's <span>new?</span>">Что <span>нового?</span></h2>
         <div class="grid">
+            
+            <!-- FPV Drone Card -->
+            <div class="card special">
+                <div class="card-icon">🛸</div>
+                <h3 data-ru="FPV Дрон" data-en="FPV Drone">FPV Дрон</h3>
+                <p data-ru="Полноценное управление от первого лица. Почувствуйте скорость и адреналин настоящих гонок на дронах." data-en="Full first-person control. Feel the speed and adrenaline of real drone racing.">
+                    Полноценное управление от первого лица. Почувствуйте скорость и адреналин настоящих гонок на дронах.
+                </p>
+            </div>
+
             <div class="card">
                 <div class="card-icon">🏙️</div>
-                <h3>Новый Город</h3>
-                <p>Исследуйте огромные локации с детализированной графикой и новыми локациями для сражений.</p>
+                <h3 data-ru="Новый Город" data-en="New City">Новый Город</h3>
+                <p data-ru="Исследуйте огромные локации с детализированной графикой и новыми местами для сражений." data-en="Explore huge locations with detailed graphics and new combat zones.">
+                    Исследуйте огромные локации с детализированной графикой и новыми местами для сражений.
+                </p>
             </div>
+
             <div class="card">
                 <div class="card-icon">🎯</div>
-                <h3>Новая Физика</h3>
-                <p>Почувствуйте реалистичную баллистику и улучшенное взаимодействие с окружением.</p>
+                <h3 data-ru="Новая Физика" data-en="New Physics">Новая Физика</h3>
+                <p data-ru="Почувствуйте реалистичную баллистику и улучшенное взаимодействие с окружением." data-en="Experience realistic ballistics and improved environmental interaction.">
+                    Почувствуйте реалистичную баллистику и улучшенное взаимодействие с окружением.
+                </p>
             </div>
+
             <div class="card">
                 <div class="card-icon">🧩</div>
-                <h3>Улучшенная Графика</h3>
-                <p>Технологии Unreal Engine 5 позволяют добиться фотореалистичного освещения и теней.</p>
+                <h3 data-ru="Улучшенная Графика" data-en="Improved Graphics">Улучшенная Графика</h3>
+                <p data-ru="Технологии нового поколения позволяют добиться фотореалистичного освещения и теней." data-en="Next-gen technologies allow for photorealistic lighting and shadows.">
+                    Технологии нового поколения позволяют добиться фотореалистичного освещения и теней.
+                </p>
             </div>
+
             <div class="card">
                 <div class="card-icon">🔫</div>
-                <h3>Новое Оружие и Звук</h3>
-                <p>Арсенал пополнился новыми видами оружия. Полностью переработан звук выстрелов.</p>
+                <h3 data-ru="Новое Оружие и Звук" data-en="New Weapons & Sound">Новое Оружие и Звук</h3>
+                <p data-ru="Арсенал пополнился новыми видами оружия. Полностью переработан звук выстрелов." data-en="The arsenal has been expanded with new weapons. Gunshot sounds have been completely reworked.">
+                    Арсенал пополнился новыми видами оружия. Полностью переработан звук выстрелов.
+                </p>
             </div>
+
             <div class="card">
                 <div class="card-icon">🔥</div>
-                <h3>Огонь</h3>
-                <p>Реалистичная система распространения огня и новые эффекты частиц.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">✈️</div>
-                <h3>Дрон "Молния"</h3>
-                <p>Управляйте новым разведывательным и боевым дроном с уникальными способностями.</p>
+                <h3 data-ru="Огонь" data-en="Fire">Огонь</h3>
+                <p data-ru="Реалистичная система распространения огня и новые эффекты частиц." data-en="Realistic fire spread system and new particle effects.">
+                    Реалистичная система распространения огня и новые эффекты частиц.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Tez Kunda -->
+    <!-- Coming Soon -->
     <section class="coming-soon" id="coming">
-        <h2>Скоро в <span>игре</span></h2>
+        <h2 data-ru="Скоро в <span>игре</span>" data-en="Coming <span>Soon</span>">Скоро в <span>игре</span></h2>
         <div class="soon-list">
             <div class="soon-item">
-                <span class="soon-icon">🎯</span>
-                <span>+ ПВО 🚀 (Системы противовоздушной обороны)</span>
+                <span class="soon-icon">🛒</span>
+                <span data-ru="+ Магазин (Докон) 🏪 — Покупка скинов, дронов и оружия" data-en="+ Store (Shop) 🏪 — Buy skins, drones, and weapons">+ Магазин (Докон) 🏪 — Покупка скинов, дронов и оружия</span>
             </div>
             <div class="soon-item">
                 <span class="soon-icon">🎯</span>
-                <span>+ Звук Сирены 🚨 (Тревога и оповещение)</span>
+                <span data-ru="+ ПВО 🚀 (Системы противовоздушной обороны)" data-en="+ Air Defense 🚀 (Anti-air systems)">+ ПВО 🚀 (Системы противовоздушной обороны)</span>
             </div>
             <div class="soon-item">
-                <span class="soon-icon">🎯</span>
-                <span>+ Звук Дрона! 🛸 (Реалистичный гул двигателей)</span>
+                <span class="soon-icon">🚨</span>
+                <span data-ru="+ Звук Сирены 🚨 (Тревога и оповещение)" data-en="+ Siren Sound 🚨 (Alarm and notification)">+ Звук Сирены 🚨 (Тревога и оповещение)</span>
+            </div>
+            <div class="soon-item">
+                <span class="soon-icon">🔊</span>
+                <span data-ru="+ Звук Дрона! 🛸 (Реалистичный гул двигателей)" data-en="+ Drone Sound! 🛸 (Realistic engine hum)">+ Звук Дрона! 🛸 (Реалистичный гул двигателей)</span>
             </div>
         </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="socials" id="socials">
+        <!-- Telegram -->
+        <a href="https://t.me/puceline_interactive" target="_blank" class="social-btn telegram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            <span>@puceline_interactive</span>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@pepper_developer" target="_blank" class="social-btn tiktok">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+            </svg>
+            <span>@pepper_developer</span>
+        </a>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Puceline Interactive. Все права защищены.</p>
-        <p style="margin-top: 10px; font-size: 12px;">Сайт создан для демонстрации обновлений игры.</p>
+        <p>&copy; 2026 Puceline-Interactive. <span data-ru="Все права защищены." data-en="All rights reserved.">Все права защищены.</span></p>
     </footer>
 
-    <!-- JavaScript Animatsiyalar -->
+    <!-- JavaScript: Til almashtirish mantiqi -->
     <script>
-        // Scroll bo'lganda elementlarning paydo bo'lish animatsiyasi
-        const observerOptions = {
-            threshold: 0.1
+        const translations = {
+            ru: {
+                title: "Puceline-Interactive | FPV Drone Update",
+            },
+            en: {
+                title: "Puceline-Interactive | FPV Drone Update",
+            }
         };
 
+        function setLang(lang) {
+            // Tugmalarning aktiv holatini o'zgartirish
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Barcha data-ru va data-en elementlarini almashtirish
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text.includes('<') || text.includes('&')) {
+                    el.innerHTML = text;
+                } else {
+                    el.innerText = text;
+                }
+            });
+
+            // HTML lang atributini yangilash
+            document.documentElement.lang = lang;
+        }
+
+        // Scroll animatsiyasi
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -429,7 +614,6 @@
             });
         }, observerOptions);
 
-        // Kartochkalar va boshqa elementlarni kuzatish
         document.querySelectorAll('.card, .soon-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
